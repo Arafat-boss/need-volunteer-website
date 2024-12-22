@@ -4,6 +4,9 @@ import {
 import Main from "../Layout/Main";
 import Login from "../Pages/Authentication/Login";
 import Register from "../Pages/Authentication/Register";
+import Home from "../Pages/Home";
+import AddVolunteer from "../Pages/AddVolunteer";
+import AllPostPage from "../Pages/AllPostPage";
 
 const router = createBrowserRouter([
     {
@@ -12,7 +15,7 @@ const router = createBrowserRouter([
       children: [
         {
             index: true,
-            element:<h2>home</h2>
+            element:<Home></Home>
         },
         {
             path:"/all-volunteer",
@@ -25,6 +28,14 @@ const router = createBrowserRouter([
         {
             path:"/register",
             element:<Register></Register>
+        },
+        {
+            path:"/add-volunteer",
+            element:<AddVolunteer></AddVolunteer>
+        },
+        {
+            path:"/all-post",
+            element:<AllPostPage></AllPostPage>
         },
       ]
     },
