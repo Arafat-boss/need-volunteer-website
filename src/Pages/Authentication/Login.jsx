@@ -2,6 +2,7 @@ import { Link, useNavigate } from "react-router-dom";
 // import Navbar from "./Navbar";
 import { useContext } from "react";
 import { AuthContext } from "../../Provider/AuthProvider";
+import toast from "react-hot-toast";
 // import Lottie from "lottie-react";
 // import loginAnimation from "../../animation/loginAnimation.json"
 // import { Helmet } from "react-helmet";
@@ -18,6 +19,16 @@ const Login = () => {
     const password = from.password.value;
     const user = { email, password };
     console.log(user);
+
+    const passwordRegex = /^(?=.*[A-Z])(?=.*\d)[A-Za-z\d]{6,}$/;
+    if (!passwordRegex.test(password)) {
+      toast.error("Password must be at least 6 characters, include one Uppercase letter, Lowercase letter and one number.")
+      return;
+    }
+    if (password.length < 6) {
+      toast.error("Password should be 6 characters or longer");
+      return;
+    }
 
     //firebase Auth
     loginUser(email, password)

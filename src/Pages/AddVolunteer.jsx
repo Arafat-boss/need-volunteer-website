@@ -5,42 +5,61 @@ import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 import axios from "axios";
 import toast from "react-hot-toast";
+import { useNavigate } from "react-router-dom";
 
 const AddVolunteer = () => {
-    const {user} = useContext(AuthContext);
-    const [startDate, setStartDate]= useState(new Date())
+  const { user } = useContext(AuthContext);
+  const [startDate, setStartDate] = useState(new Date());
+  const navigate = useNavigate()
 
-    const handelSubmit = async(e) =>{
-        e.preventDefault();
+  const handelSubmit = async (e) => {
+    e.preventDefault();
 
-        const from = e.target;
-        const url = from.url.value;
-        const title = from.title.value;
-        const location = from.location.value;
-        const category = from.category.value;
-        const description = from.description.value;
-        const number = from.number.value;
-        const deadline = startDate;
+    const from = e.target;
+    const url = from.url.value;
+    const title = from.title.value;
+    const location = from.location.value;
+    const category = from.category.value;
+    const description = from.description.value;
+    const number = from.number.value;
+    const deadline = startDate;
 
-        const organizerEmail = from.organizerEmail.value;
-        const organizerName = user.displayName;
-        const addVolunteer = {url, title, location, category, description, number,deadline, organizerEmail, organizerName}
-        console.log(addVolunteer);
+    const organizerEmail = from.organizerEmail.value;
+    const organizerName = user.displayName;
+    const addVolunteer = {
+      url,
+      title,
+      location,
+      category,
+      description,
+      number,
+      deadline,
+      organizerEmail,
+      organizerName,
+      user: {
+        organizerEmail,
+        name: user?.displayName,
+        photo:user?.photoURL,
+      }
+    };
+    console.log(addVolunteer);
 
-        //fetch server
-        try{
-          //make a post request
-          await axios.post(`${import.meta.env.VITE_API_URL}/volunteer-post`, addVolunteer)
-          // from.reset()
-          toast.success('Add Post Successfully Done')
-          // navigate('/my-posted-jobs')
-        }
-        catch(err){
-         console.log(err);
-         toast.error('You added something wrong')
-        }
+    //fetch server
+    try {
+      //make a post request
+      await axios.post(
+        `${import.meta.env.VITE_API_URL}/volunteer-post`,
+        addVolunteer
+      );
+      // from.reset()
+      toast.success("Add Post Successfully Done");
+      navigate('/manage-profile')
+    } catch (err) {
+      console.log(err);
+      toast.error("You added something wrong");
     }
-  
+  };
+
   return (
     <div className="max-w-4xl mx-auto p-6 bg-base-200 rounded-lg shadow-lg">
       <h1 className="text-3xl font-bold text-center mb-6">Add a New Post</h1>
@@ -104,7 +123,9 @@ const AddVolunteer = () => {
 
         {/* Number of Volunteers Needed */}
         <div>
-          <label className="block text-lg font-medium">No. of Volunteers Needed</label>
+          <label className="block text-lg font-medium">
+            No. of Volunteers Needed
+          </label>
           <input
             type="number"
             name="number"
@@ -122,13 +143,12 @@ const AddVolunteer = () => {
               type="date"
               className="input input-bordered w-full pl-10"
             /> */}
-           {/* Date Picker Input Field */}
-           <DatePicker
-                className="border p-2 rounded-md"
-                selected={startDate}
-                onChange={(date) => setStartDate(date)}
-              />
-
+            {/* Date Picker Input Field */}
+            <DatePicker
+              className="border p-2 rounded-md"
+              selected={startDate}
+              onChange={(date) => setStartDate(date)}
+            />
           </div>
         </div>
 
@@ -139,7 +159,7 @@ const AddVolunteer = () => {
             <FaUser className="absolute top-3 left-3 text-gray-500" />
             <input
               type="text"
-              defaultValue={user?.displayName}
+              value={user?.displayName}
               placeholder="Enter organizer name"
               className="input input-bordered w-full pl-10"
             />
@@ -153,7 +173,7 @@ const AddVolunteer = () => {
             <FaEnvelope className="absolute top-3 left-3 text-gray-500" />
             <input
               type="email"
-              defaultValue={user?.email}
+              value={user?.email}
               name="organizerEmail"
               placeholder="Enter organizer email"
               className="input input-bordered w-full pl-10"

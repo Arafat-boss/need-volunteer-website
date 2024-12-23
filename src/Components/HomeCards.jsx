@@ -2,6 +2,7 @@ import axios from 'axios';
 import { format } from 'date-fns';
 import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
+import HCard from './HCard';
 
 const HomeCards = () => {
      const [posts, setPosts] = useState([]);
@@ -18,38 +19,9 @@ const HomeCards = () => {
 console.log(posts);
     return (
         <div className="w-11/12 mx-auto">
+            <h2 className="text-center font-bold text-4xl mb-5">Our Volunteer</h2>
       <div className="grid lg:grid-cols-3 md:grid-cols-2 sm:grid-cols-1 gap-6">
-        {posts.map((post) => (
-          <div
-            key={post._id}
-            className="card  bg-base-100 shadow-xl"
-          >
-            <figure>
-              <img
-                src={post?.url}
-                alt={post.title}
-                className="h-48 w-full object-cover"
-              />
-            </figure>
-            <div className="card-body">
-              <h2 className="card-title text-lg font-bold">{post.title}</h2>
-              <p className="text-sm text-gray-600">{post.category}</p>
-              <div className="mt-2">
-                <span className="badge badge-primary mr-2">
-                  {post.category}
-                </span>
-                <span className="badge badge-secondary">{format(new Date(post.deadline), "P")}</span>
-              </div>
-              <div className="text-sm text-gray-500 mt-2">
-                {/* <p>Volunteers Needed: {volunteers}</p> */}
-                {/* <p>Deadline: {new Date(deadline).toLocaleDateString()}</p> */}
-              </div>
-              <div className="card-actions justify-end mt-4">
-                <Link to={`/details/${post._id}`}  className="btn btn-primary btn-sm">View Details</Link>
-              </div>
-            </div>
-          </div>
-        ))}
+        {posts.map((post) => <HCard post={post} key={post._id}></HCard>)}
       </div>
     </div>
     );

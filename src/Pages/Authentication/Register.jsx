@@ -4,6 +4,7 @@ import { useNavigate } from "react-router-dom";
 // import registerAnimation from "../../animation/registerAnimation.json"
 // import { Helmet } from "react-helmet";
 import { AuthContext } from "../../Provider/AuthProvider";
+import toast from "react-hot-toast";
 
 const Register = () => {
   const navigate = useNavigate();
@@ -19,6 +20,17 @@ const Register = () => {
     const user = { email, password, name, photo };
     console.log(user);
 
+
+    const passwordRegex = /^(?=.*[A-Z])(?=.*\d)[A-Za-z\d]{6,}$/;
+    if (!passwordRegex.test(password)) {
+      toast.error("Password must be at least 6 characters, include one uppercase letter and one number.")
+      return;
+    }
+    if (password.length < 6) {
+      toast.error("Password should be 6 characters or longer");
+      return;
+    }
+
     //firebase Auth
     registerUser(email, password)
       .then((res) => {
@@ -26,7 +38,6 @@ const Register = () => {
         e.target.reset();
         navigate("/");
         //update
-
         userUpdateProfile({ displayName: name, photoURL: photo })
           .then((res) => {
             navigate("/");
@@ -38,6 +49,7 @@ const Register = () => {
       .catch((error) => {
         console.log(error.message);
       });
+
   };
   return (
     <div>
