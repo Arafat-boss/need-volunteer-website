@@ -3,8 +3,46 @@ import React from "react";
 import { FaDeleteLeft } from "react-icons/fa6";
 import { FcDeleteDatabase } from "react-icons/fc";
 import { FiEdit } from "react-icons/fi";
+import Swal from "sweetalert2";
 
-const ManageTable = ({post}) => {
+const ManageTable = ({post, fetchPosts}) => {
+
+
+  const handelDelete = (id) =>{
+    console.log(id);
+    Swal.fire({
+      title: "Are you sure?",
+      text: "You won't be able to revert this!",
+      icon: "warning",
+      showCancelButton: true,
+      confirmButtonColor: "#3085d6",
+      cancelButtonColor: "#d33",
+      confirmButtonText: "Yes, delete it!",
+    }).then((result) => {
+      if (result.isConfirmed) {
+        fetch(`${import.meta.env.VITE_API_URL}/manage/${id}`, {
+          method: "DELETE",
+        })
+          .then((res) => res.json())
+          .then((data) => {
+            console.log(data);
+            if (data.deletedCount > 0) {
+              Swal.fire({
+                title: "Deleted!",
+                text: "Your file has been deleted.",
+                icon: "success",
+              });
+              //update the loaded coffee state
+              // const remainingCards = deleteUser.filter((post) => post._id !== id);
+              // setDeleteUser(remainingCards);
+              // fetchPosts()
+            }
+          });
+      }
+    });
+  }
+
+
   return (
       <tr key={post._id}>
         <td className="px-4 py-4 text-sm text-gray-500  whitespace-nowrap">
@@ -32,7 +70,8 @@ const ManageTable = ({post}) => {
           </div>
         </td>
         <td className="px-4 py-4 text-sm whitespace-nowrap">
-          <button
+          <button 
+            onClick={()=>handelDelete(post._id)}
             title="Mark Complete"
             className="text-gray-500 transition-colors duration-200   hover:text-red-500 focus:outline-none disabled:cursor-not-allowed"
           >

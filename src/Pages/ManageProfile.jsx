@@ -16,15 +16,15 @@ const ManageProfile = () => {
     );
     setPosts(data);
   };
-
+ 
   console.log(posts);
   return (
     <section className="container px-4 mx-auto my-12">
       <div className="flex items-center gap-x-3">
-        <h2 className="text-lg font-medium text-gray-800 ">Bid Requests</h2>
+        <h2 className="text-lg font-medium text-gray-800 ">Volunteer Post</h2>
 
         <span className="px-3 py-1 text-xs text-blue-600 bg-blue-100 rounded-full ">
-          {posts.length} Requests
+          {posts.length} post
         </span>
       </div>
 
@@ -89,7 +89,11 @@ const ManageProfile = () => {
                 </thead>
                 <tbody className="bg-white divide-y divide-gray-200 ">
                   {posts.map((post) => (
-                    <ManageTable key={post._id} post={post}></ManageTable>
+                    <ManageTable 
+                    key={post._id} 
+                    post={post}
+                    fetchPosts={fetchPosts()}
+                    ></ManageTable>
                   ))}
                 </tbody>
               </table>
