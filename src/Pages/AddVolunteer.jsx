@@ -139,7 +139,7 @@ const AddVolunteer = () => {
             <FaUser className="absolute top-3 left-3 text-gray-500" />
             <input
               type="text"
-              value={user?.displayName}
+              defaultValue={user?.displayName}
               placeholder="Enter organizer name"
               className="input input-bordered w-full pl-10"
             />
@@ -153,7 +153,7 @@ const AddVolunteer = () => {
             <FaEnvelope className="absolute top-3 left-3 text-gray-500" />
             <input
               type="email"
-              value={user?.email}
+              defaultValue={user?.email}
               name="organizerEmail"
               placeholder="Enter organizer email"
               className="input input-bordered w-full pl-10"

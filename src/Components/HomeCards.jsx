@@ -1,26 +1,25 @@
-import axios from "axios";
-import React, { useEffect, useState } from "react";
-import { Link, useLoaderData } from "react-router-dom";
+import axios from 'axios';
+import { format } from 'date-fns';
+import React, { useEffect, useState } from 'react';
+import { Link } from 'react-router-dom';
 
-const AllPostPage = () => {
-    const allPosts = useLoaderData()
-  // const [posts, setPosts] = useState([]);
-  // useEffect(() => {
-  //   fetchAllJobs();
-  // }, []);
-  // const fetchAllJobs = async () => {
-  //   const { data } = await axios.get(
-  //     `${import.meta.env.VITE_API_URL}/all-posts`
-  //   );
-  //   setPosts(data);
-  // };
+const HomeCards = () => {
+     const [posts, setPosts] = useState([]);
+  useEffect(() => {
+    fetchPosts();
+  }, []);
+  const fetchPosts = async () => {
+    const { data } = await axios.get(
+      `${import.meta.env.VITE_API_URL}/volunteer/limit`
+    );
+    setPosts(data);
+  };
 
-// console.log(posts);
-
-  return (
-    <div className="w-11/12 mx-auto">
-      <div className="grid lg:grid-cols-4 md:grid-cols-3 sm:grid-cols-2 gap-6">
-        {allPosts.map((post) => (
+console.log(posts);
+    return (
+        <div className="w-11/12 mx-auto">
+      <div className="grid lg:grid-cols-3 md:grid-cols-2 sm:grid-cols-1 gap-6">
+        {posts.map((post) => (
           <div
             key={post._id}
             className="card  bg-base-100 shadow-xl"
@@ -34,12 +33,12 @@ const AllPostPage = () => {
             </figure>
             <div className="card-body">
               <h2 className="card-title text-lg font-bold">{post.title}</h2>
-              <p className="text-sm text-gray-600">{post.description}</p>
+              <p className="text-sm text-gray-600">{post.category}</p>
               <div className="mt-2">
                 <span className="badge badge-primary mr-2">
                   {post.category}
                 </span>
-                <span className="badge badge-secondary">{post.location}</span>
+                <span className="badge badge-secondary">{format(new Date(post.deadline), "P")}</span>
               </div>
               <div className="text-sm text-gray-500 mt-2">
                 {/* <p>Volunteers Needed: {volunteers}</p> */}
@@ -53,7 +52,7 @@ const AllPostPage = () => {
         ))}
       </div>
     </div>
-  );
+    );
 };
 
-export default AllPostPage;
+export default HomeCards;

@@ -7,6 +7,8 @@ import Register from "../Pages/Authentication/Register";
 import Home from "../Pages/Home";
 import AddVolunteer from "../Pages/AddVolunteer";
 import AllPostPage from "../Pages/AllPostPage";
+import ViewDetails from "../Pages/ViewDetails";
+import PrivateRoute from "./PrivateRoute";
 
 const router = createBrowserRouter([
     {
@@ -18,10 +20,6 @@ const router = createBrowserRouter([
             element:<Home></Home>
         },
         {
-            path:"/all-volunteer",
-            element:<h2>All</h2>
-        },
-        {
             path:"/login",
             element:<Login></Login>
         },
@@ -31,11 +29,17 @@ const router = createBrowserRouter([
         },
         {
             path:"/add-volunteer",
-            element:<AddVolunteer></AddVolunteer>
+            element:<PrivateRoute><AddVolunteer></AddVolunteer></PrivateRoute>
         },
         {
             path:"/all-post",
-            element:<AllPostPage></AllPostPage>
+            element:<AllPostPage></AllPostPage>,
+            loader: ()=> fetch(`http://localhost:9000/all-posts`)
+        },
+        {
+            path:"/details/:id",
+            element:<PrivateRoute><ViewDetails></ViewDetails></PrivateRoute>,
+            loader: ({params})=> fetch(`http://localhost:9000/single-post/${params.id}`)
         },
       ]
     },
