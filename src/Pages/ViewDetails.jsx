@@ -1,5 +1,6 @@
 import { format } from "date-fns";
 import React from "react";
+import { Helmet } from "react-helmet";
 import { Link, useLoaderData } from "react-router-dom";
 
 const ViewDetails = () => {
@@ -18,6 +19,10 @@ const ViewDetails = () => {
     organizerName,
   } = details || {};
   return (
+    <>
+    <Helmet>
+        <title>Details Volunteer</title>
+      </Helmet>
     <div className="flex flex-col md:flex-row bg-white shadow-lg rounded-lg overflow-hidden w-11/12 mx-auto mt-5">
       {/* Left Side: Image */}
       <div className="w-full md:w-1/3">
@@ -63,6 +68,7 @@ const ViewDetails = () => {
         </Link>
       </div>
     </div>
+    </>
   );
 };
 

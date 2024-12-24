@@ -2,6 +2,9 @@ import axios from "axios";
 import React, { useContext, useEffect, useState } from "react";
 import { AuthContext } from "../Provider/AuthProvider";
 import { useParams } from "react-router-dom";
+import toast from "react-hot-toast";
+import DatePicker from "react-datepicker";
+import { Helmet } from "react-helmet";
 
 const BeAVolunteer = () => {
   const { id } = useParams();
@@ -31,6 +34,7 @@ const BeAVolunteer = () => {
     const category = from.category.value;
     const description = from.description.value;
     const number = from.number.value;
+    const suggestion = from.suggestion.value;
     const deadline = startDate;
 
     const organizerEmail = from.organizerEmail.value;
@@ -43,29 +47,37 @@ const BeAVolunteer = () => {
       description,
       number,
       deadline,
+      suggestion,
       organizerEmail,
       organizerName,
       user: {
         organizerEmail,
         name: user?.displayName,
-        photo:user?.photoURL,
-      }
+        photo: user?.photoURL,
+      },
+      status: "requested",
     };
     console.log(addVolunteer);
 
-    // try {
-    //   const response = await axios.post(
-    //     `${import.meta.env.VITE_API_URL}/add-volunteer`,
-    //     formData
-    //   );
-    //   console.log("Volunteer added:", response.data);
-    // } catch (error) {
-    //   console.error("Error adding volunteer:", error);
-    // }
+    //fetch server
+    try {
+      //make a post request
+      await axios.post(`${import.meta.env.VITE_API_URL}/request`, addVolunteer);
+      // from.reset()
+      toast.success("Request Post Successfully Done");
+      // navigate('/manage-profile')
+    } catch (err) {
+      console.log(err);
+      toast.error("You added something wrong");
+    }
   };
 
   return (
     // <h2>Be a Volunteer::{posts.title}</h2>
+    <>
+     <Helmet>
+        <title>Be a volunteer</title>
+      </Helmet>
     <div className="mt-5 flex justify-center items-center min-h-screen ">
       <div className="p-8 bg-white rounded-lg shadow-md w-full max-w-lg">
         <h2 className="text-2xl font-bold text-center text-blue-800 mb-1">
@@ -109,7 +121,10 @@ const BeAVolunteer = () => {
 
           {/* Description */}
           <div>
-            <label htmlFor="description" className="font-semibold text-gray-700">
+            <label
+              htmlFor="description"
+              className="font-semibold text-gray-700"
+            >
               Description
             </label>
             <textarea
@@ -154,29 +169,30 @@ const BeAVolunteer = () => {
           {/* Volunteers Needed and Deadline */}
           <div className="grid grid-cols-2 gap-4">
             <div>
-              <label htmlFor="volunteersNeeded" className="font-semibold text-gray-700">
+              <label
+                htmlFor="volunteersNeeded"
+                className="font-semibold text-gray-700"
+              >
                 No. of Volunteers Needed
               </label>
               <input
                 type="number"
                 id="volunteersNeeded"
-                name="volunteersNeeded"
+                name="number"
                 defaultValue={posts.number || ""}
                 readOnly
                 className="w-full p-2 border rounded bg-gray-100"
               />
             </div>
             <div>
-              <label htmlFor="deadline" className="font-semibold text-gray-700">
+              <label className="font-semibold text-gray-700">
                 Deadline
               </label>
-              <input
-                type="date"
-                id="deadline"
-                name="deadline"
-                defaultValue={posts.deadline || ""}
-                readOnly
-                className="w-full p-2 border rounded bg-gray-100"
+              <DatePicker
+                className="border p-2 rounded-md"
+                selected={startDate}
+                onChange={(date) => setStartDate(date)}
+                // defaultValue={startDate}
               />
             </div>
           </div>
@@ -184,7 +200,10 @@ const BeAVolunteer = () => {
           {/* Organizer Name and Email */}
           <div className="grid grid-cols-2 gap-4">
             <div>
-              <label htmlFor="organizerName" className="font-semibold text-gray-700">
+              <label
+                htmlFor="organizerName"
+                className="font-semibold text-gray-700"
+              >
                 Organizer Name
               </label>
               <input
@@ -197,7 +216,10 @@ const BeAVolunteer = () => {
               />
             </div>
             <div>
-              <label htmlFor="organizerEmail" className="font-semibold text-gray-700">
+              <label
+                htmlFor="organizerEmail"
+                className="font-semibold text-gray-700"
+              >
                 Organizer Email
               </label>
               <input
@@ -213,9 +235,7 @@ const BeAVolunteer = () => {
 
           {/* Suggestion Input */}
           <div>
-            <label htmlFor="suggestion" className="font-semibold text-gray-700">
-              Suggestion
-            </label>
+            <label className="font-semibold text-gray-700">Suggestion</label>
             <textarea
               id="suggestion"
               name="suggestion"
@@ -236,6 +256,7 @@ const BeAVolunteer = () => {
         </form>
       </div>
     </div>
+    </>
   );
 };
 

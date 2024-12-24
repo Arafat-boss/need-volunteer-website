@@ -29,6 +29,7 @@ const Login = () => {
       toast.error("Password should be 6 characters or longer");
       return;
     }
+    
 
     //firebase Auth
     loginUser(email, password)

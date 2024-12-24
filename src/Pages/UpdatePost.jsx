@@ -6,6 +6,7 @@ import { FaEnvelope, FaUser } from "react-icons/fa6";
 import { useNavigate, useParams } from "react-router-dom";
 import axios from "axios";
 import toast from "react-hot-toast";
+import { Helmet } from "react-helmet";
 
 const UpdatePost = () => {
     const {user} = useContext(AuthContext)
@@ -75,19 +76,14 @@ const handelUpdate = async(e) =>{
       }
 }
 
-//Thumbnail 
-// Post Title 
-// Description 
-// Category => for example- healthcare, education, social service, animal welfare. 
-// Location 
-// No. of volunteers needed 
-// Deadline => Take the date using React datepicker 
-// Organizer name and organizer email (Logged-in user email  & name ) (read-only)
-// Update Post Button 
 
 
 
   return (
+    <>
+    <Helmet>
+        <title>Update Posts</title>
+      </Helmet>
      <div className="max-w-4xl mx-auto p-6 bg-base-200 rounded-lg shadow-lg">
          <h1 className="text-3xl font-bold text-center mb-6">Update a Post</h1>
          <form onSubmit={handelUpdate} className="space-y-4">
@@ -221,6 +217,7 @@ const handelUpdate = async(e) =>{
            </div>
          </form>
        </div>
+    </>
   )
 };
 

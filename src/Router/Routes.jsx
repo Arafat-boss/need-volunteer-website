@@ -12,11 +12,13 @@ import PrivateRoute from "./PrivateRoute";
 import BeAVolunteer from "../Pages/BeAVolunteer";
 import ManageProfile from "../Pages/ManageProfile";
 import UpdatePost from "../Pages/UpdatePost";
+import ErrorPage from "../Pages/ErrorPage";
 
 const router = createBrowserRouter([
     {
       path: "/",
       element: <Main></Main>,
+      errorElement:<ErrorPage></ErrorPage>,
       children: [
         {
             index: true,
@@ -40,17 +42,17 @@ const router = createBrowserRouter([
         },
         {
             path:"/volunteer/:id",
-            element:<BeAVolunteer></BeAVolunteer>
+            element:<PrivateRoute><BeAVolunteer></BeAVolunteer></PrivateRoute>
         },
         {
             path:"/all-post",
             element:<AllPostPage></AllPostPage>,
-            loader: ()=> fetch(`http://localhost:9000/all-posts`)
+            loader: ()=> fetch(`https://volunteer-management-servaer.vercel.app/all-posts`)
         },
         {
             path:"/details/:id",
             element:<PrivateRoute><ViewDetails></ViewDetails></PrivateRoute>,
-            loader: ({params})=> fetch(`http://localhost:9000/single-post/${params.id}`)
+            loader: ({params})=> fetch(`https://volunteer-management-servaer.vercel.app/single-post/${params.id}`)
         },
         {
             path:"/update/:id",

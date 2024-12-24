@@ -1,5 +1,6 @@
 import axios from "axios";
 import React, { useEffect, useState } from "react";
+import { Helmet } from "react-helmet";
 import { Link, useLoaderData } from "react-router-dom";
 
 const AllPostPage = () => {
@@ -28,6 +29,10 @@ const AllPostPage = () => {
   console.log(posts);
 
   return (
+    <>
+    <Helmet>
+        <title>Volunteer Posts</title>
+      </Helmet>
     <div className="w-11/12 mx-auto">
          <form className="flex justify-center mt-2 mb-4" onSubmit={(e) => e.preventDefault()}>
             <div className='flex p-1 overflow-hidden rounded-lg    focus-within:ring focus-within:ring-opacity-40 focus-within:border-blue-400 focus-within:ring-blue-300'>
@@ -81,6 +86,7 @@ const AllPostPage = () => {
         ))}
       </div>
     </div>
+  </>
   );
 };
 

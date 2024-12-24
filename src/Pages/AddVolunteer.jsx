@@ -6,6 +6,7 @@ import "react-datepicker/dist/react-datepicker.css";
 import axios from "axios";
 import toast from "react-hot-toast";
 import { useNavigate } from "react-router-dom";
+import { Helmet } from "react-helmet";
 
 const AddVolunteer = () => {
   const { user } = useContext(AuthContext);
@@ -61,6 +62,10 @@ const AddVolunteer = () => {
   };
 
   return (
+    <>
+    <Helmet>
+        <title>Add volunteer</title>
+      </Helmet>
     <div className="max-w-4xl mx-auto p-6 bg-base-200 rounded-lg shadow-lg">
       <h1 className="text-3xl font-bold text-center mb-6">Add a New Post</h1>
       <form onSubmit={handelSubmit} className="space-y-4">
@@ -189,6 +194,7 @@ const AddVolunteer = () => {
         </div>
       </form>
     </div>
+  </>
   );
 };
 
