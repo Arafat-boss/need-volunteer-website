@@ -11,6 +11,7 @@ import ViewDetails from "../Pages/ViewDetails";
 import PrivateRoute from "./PrivateRoute";
 import BeAVolunteer from "../Pages/BeAVolunteer";
 import ManageProfile from "../Pages/ManageProfile";
+import UpdatePost from "../Pages/UpdatePost";
 
 const router = createBrowserRouter([
     {
@@ -38,7 +39,7 @@ const router = createBrowserRouter([
             element:<AllPostPage></AllPostPage>
         },
         {
-            path:"/be-volunteer",
+            path:"/volunteer/:id",
             element:<BeAVolunteer></BeAVolunteer>
         },
         {
@@ -50,6 +51,10 @@ const router = createBrowserRouter([
             path:"/details/:id",
             element:<PrivateRoute><ViewDetails></ViewDetails></PrivateRoute>,
             loader: ({params})=> fetch(`http://localhost:9000/single-post/${params.id}`)
+        },
+        {
+            path:"/update/:id",
+            element:<PrivateRoute><UpdatePost></UpdatePost></PrivateRoute>,
         },
         {
             path:'/manage-profile',

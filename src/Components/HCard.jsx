@@ -2,35 +2,35 @@ import { format } from "date-fns";
 import React from "react";
 import { Link } from "react-router-dom";
 
-const HCard = ({post}) => {
-    const {_id,url, title,category, deadline} = post || {}
+const HCard = ({ post }) => {
+  const { _id, url, title, category, deadline, number } = post || {};
   return (
     <div>
-      <div className="card  bg-base-100 shadow-xl">
+      <div className="card bg-white shadow-lg border border-gray-200">
         <figure>
           <img
             src={url}
             alt={title}
-            className="h-48 w-full object-cover"
+            className="h-48 w-full object-cover rounded-t-md"
           />
         </figure>
         <div className="card-body">
-          <h2 className="card-title text-lg font-bold">{title}</h2>
-          <p className="text-sm text-gray-600">{category}</p>
-          <div className="mt-2">
-            <span className="badge badge-primary mr-2">{category}</span>
-            <span className="badge badge-secondary">
+          <h2 className="card-title text-xl font-bold text-gray-800">{title}</h2>
+          <div className="flex flex-wrap items-center space-x-2">
+            <span className="badge  bg-red-200">{category}</span>
+            <span className="badge bg-yellow-100">
               {format(new Date(deadline), "P")}
             </span>
           </div>
-          <div className="text-sm text-gray-500 mt-2">
-            {/* <p>Volunteers Needed: {volunteers}</p> */}
-            {/* <p>Deadline: {new Date(deadline).toLocaleDateString()}</p> */}
+          <div className="text-sm text-gray-500 mt-4">
+            <p>Volunteers Needed: {number}</p>
+            <p>Deadline: {format(new Date(deadline), "P")}</p>
           </div>
-          <div className="card-actions justify-end mt-4">
+          <div className="card-actions mt-6 flex justify-center">
+            {/* Center-aligned button */}
             <Link
-              to={`/details/${post._id}`}
-              className="btn btn-primary btn-sm"
+              to={`/details/${_id}`}
+              className="btn bg-orange-400 btn-md w-full hover:bg-red-200 text-white hover:text-black"
             >
               View Details
             </Link>

@@ -92,7 +92,7 @@ const ManageProfile = () => {
                     <ManageTable 
                     key={post._id} 
                     post={post}
-                    fetchPosts={fetchPosts()}
+                    fetchPosts={fetchPosts}
                     ></ManageTable>
                   ))}
                 </tbody>
