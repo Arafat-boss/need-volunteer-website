@@ -31,9 +31,7 @@ const ManageTable = ({ post, fetchPosts }) => {
                 text: "Your file has been deleted.",
                 icon: "success",
               });
-              //update the loaded coffee state
-              // const remainingCards = deleteUser.filter((post) => post._id !== id);
-              // setDeleteUser(remainingCards);
+              
               fetchPosts();
             }
           });
@@ -42,7 +40,7 @@ const ManageTable = ({ post, fetchPosts }) => {
   };
 
   return (
-    <tr key={post._id}>
+    <tr>
       <td className="px-4 py-4 text-sm text-gray-500  whitespace-nowrap">
         {post.title}
       </td>
@@ -56,7 +54,7 @@ const ManageTable = ({ post, fetchPosts }) => {
       </td>
       <td className="px-4 py-4 text-sm whitespace-nowrap">
         <div className="flex items-center gap-x-2">
-          <p>{post.number}</p>
+          <p>{post.needVolunteer}</p>
         </div>
       </td>
       <td className="px-4 py-4 text-sm font-medium text-gray-700 whitespace-nowrap">

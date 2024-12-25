@@ -3,7 +3,7 @@ import React from "react";
 import { Link } from "react-router-dom";
 
 const HCard = ({ post }) => {
-  const { _id, url, title, category, deadline, number } = post || {};
+  const { _id, url, title, category, deadline, needVolunteer } = post || {};
   return (
     <div>
       <div className="card bg-white shadow-lg border border-gray-200">
@@ -23,7 +23,7 @@ const HCard = ({ post }) => {
             </span>
           </div>
           <div className="text-sm text-gray-500 mt-4">
-            <p>Volunteers Needed: {number}</p>
+            <p>Volunteers Needed: {needVolunteer}</p>
             <p>Deadline: {format(new Date(deadline), "P")}</p>
           </div>
           <div className="card-actions mt-6 flex justify-center">

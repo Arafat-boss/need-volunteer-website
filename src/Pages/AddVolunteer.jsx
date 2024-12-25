@@ -23,6 +23,7 @@ const AddVolunteer = () => {
     const category = from.category.value;
     const description = from.description.value;
     const number = from.number.value;
+    const needVolunteer = parseInt(number)
     const deadline = startDate;
 
     const organizerEmail = from.organizerEmail.value;
@@ -33,7 +34,7 @@ const AddVolunteer = () => {
       location,
       category,
       description,
-      number,
+      needVolunteer,
       deadline,
       organizerEmail,
       organizerName,

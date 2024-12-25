@@ -1,4 +1,5 @@
 import axios from "axios";
+import { format } from "date-fns";
 import React, { useEffect, useState } from "react";
 import { Helmet } from "react-helmet";
 import { Link, useLoaderData } from "react-router-dom";
@@ -52,37 +53,37 @@ const AllPostPage = () => {
           </form>
       <div className="grid lg:grid-cols-3 md:grid-cols-2 sm:grid-cols-1 gap-6">
         {posts.map((post) => (
-          <div key={post._id} className="card  bg-base-100 shadow-xl">
-            <figure>
-              <img
-                src={post?.url}
-                alt={post.title}
-                className="h-48 w-full object-cover"
-              />
-            </figure>
-            <div className="card-body">
-              <h2 className="card-title text-lg font-bold">{post.title}</h2>
-              <p className="text-sm text-gray-600">{post.description}</p>
-              <div className="mt-2">
-                <span className="badge badge-primary mr-2">
-                  {post.category}
-                </span>
-                <span className="badge badge-secondary">{post.location}</span>
-              </div>
-              <div className="text-sm text-gray-500 mt-2">
-                {/* <p>Volunteers Needed: {volunteers}</p> */}
-                {/* <p>Deadline: {new Date(deadline).toLocaleDateString()}</p> */}
-              </div>
-              <div className="card-actions justify-end mt-4">
-                <Link
-                  to={`/details/${post._id}`}
-                  className="btn btn-primary btn-sm"
-                >
-                  View Details
-                </Link>
-              </div>
-            </div>
-          </div>
+          <div className="card bg-white shadow-lg border border-gray-200">
+                 <figure>
+                   <img
+                     src={post.url}
+                     alt={post.title}
+                     className="h-48 w-full object-cover rounded-t-md"
+                   />
+                 </figure>
+                 <div className="card-body">
+                   <h2 className="card-title text-xl font-bold text-gray-800">{post.title}</h2>
+                   <div className="flex flex-wrap items-center space-x-2">
+                     <span className="badge  bg-red-200">{post.category}</span>
+                     <span className="badge bg-yellow-100">
+                       {format(new Date(post.deadline), "P")}
+                     </span>
+                   </div>
+                   <div className="text-sm text-gray-500 mt-4">
+                     <p>Volunteers Needed: {post.number}</p>
+                     <p>Deadline: {format(new Date(post.deadline), "P")}</p>
+                   </div>
+                   <div className="card-actions mt-6 flex justify-center">
+                     {/* Center-aligned button */}
+                     <Link
+                       to={`/details/${post._id}`}
+                       className="btn bg-orange-400 btn-md w-full hover:bg-red-200 text-white hover:text-black"
+                     >
+                       View Details
+                     </Link>
+                   </div>
+                 </div>
+               </div>
         ))}
       </div>
     </div>

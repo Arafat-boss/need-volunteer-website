@@ -40,7 +40,7 @@ const handelUpdate = async(e) =>{
     const location = from.location.value;
     const category = from.category.value;
     const description = from.description.value;
-    const number = from.number.value;
+    const needVolunteer = from.needVolunteer.value;
     const deadline = startDate;
 
     const organizerEmail = from.organizerEmail.value;
@@ -51,7 +51,7 @@ const handelUpdate = async(e) =>{
       location,
       category,
       description,
-      number,
+      needVolunteer,
       deadline,
       organizerEmail,
       organizerName,
@@ -61,7 +61,7 @@ const handelUpdate = async(e) =>{
         photo:user?.photoURL,
       }
     }
-    // console.log(updateData);
+    console.log(updateData);
 
     try{
         //make a post request
@@ -155,8 +155,8 @@ const handelUpdate = async(e) =>{
              </label>
              <input
                type="number"
-               name="number"
-               defaultValue={posts.number}
+               name="needVolunteer"
+               defaultValue={posts.needVolunteer}
                placeholder="Enter number of volunteers"
                className="input input-bordered w-full"
              />

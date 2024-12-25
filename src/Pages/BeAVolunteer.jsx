@@ -1,12 +1,13 @@
 import axios from "axios";
 import React, { useContext, useEffect, useState } from "react";
 import { AuthContext } from "../Provider/AuthProvider";
-import { useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import toast from "react-hot-toast";
 import DatePicker from "react-datepicker";
 import { Helmet } from "react-helmet";
 
 const BeAVolunteer = () => {
+  const navigate = useNavigate()
   const { id } = useParams();
   const { user } = useContext(AuthContext);
   const [posts, setPosts] = useState([]);
@@ -33,7 +34,7 @@ const BeAVolunteer = () => {
     const location = from.location.value;
     const category = from.category.value;
     const description = from.description.value;
-    const number = from.number.value;
+    const needVolunteer = parseInt(from.number.value);
     const suggestion = from.suggestion.value;
     const deadline = startDate;
 
@@ -45,8 +46,8 @@ const BeAVolunteer = () => {
       location,
       category,
       description,
-      number,
       deadline,
+      needVolunteer,
       suggestion,
       organizerEmail,
       organizerName,
@@ -56,6 +57,7 @@ const BeAVolunteer = () => {
         photo: user?.photoURL,
       },
       status: "requested",
+      clickId: id,
     };
     console.log(addVolunteer);
 
@@ -65,7 +67,7 @@ const BeAVolunteer = () => {
       await axios.post(`${import.meta.env.VITE_API_URL}/request`, addVolunteer);
       // from.reset()
       toast.success("Request Post Successfully Done");
-      // navigate('/manage-profile')
+      navigate('/manage-profile')
     } catch (err) {
       console.log(err);
       toast.error("You added something wrong");
@@ -179,7 +181,7 @@ const BeAVolunteer = () => {
                 type="number"
                 id="volunteersNeeded"
                 name="number"
-                defaultValue={posts.number || ""}
+                defaultValue={posts.needVolunteer || ""}
                 readOnly
                 className="w-full p-2 border rounded bg-gray-100"
               />

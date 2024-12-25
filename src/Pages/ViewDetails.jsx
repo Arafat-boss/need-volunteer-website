@@ -13,7 +13,7 @@ const ViewDetails = () => {
     location,
     category,
     description,
-    number,
+    needVolunteer,
     deadline,
     organizerEmail,
     organizerName,
@@ -43,7 +43,7 @@ const ViewDetails = () => {
             <span className="font-semibold">Location:</span> {location}
           </p>
           <p>
-            <span className="font-semibold">Total Volunteer:</span> {number}
+            <span className="font-semibold">Total Volunteer:</span> {needVolunteer}
           </p>
           <p>
             <span className="font-semibold">Date:</span>{" "}
