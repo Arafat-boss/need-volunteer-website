@@ -1,8 +1,9 @@
-import { Link, useNavigate } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 // import Navbar from "./Navbar";
 import { useContext } from "react";
 import { AuthContext } from "../../Provider/AuthProvider";
 import toast from "react-hot-toast";
+import axios from "axios";
 // import Lottie from "lottie-react";
 // import loginAnimation from "../../animation/loginAnimation.json"
 // import { Helmet } from "react-helmet";
@@ -10,6 +11,7 @@ import toast from "react-hot-toast";
 
 const Login = () => {
   const navigate = useNavigate();
+  const location = useLocation()
   const { loginUser, googleProvider } = useContext(AuthContext);
 
   const handelLogin = (e) => {
@@ -34,8 +36,13 @@ const Login = () => {
     //firebase Auth
     loginUser(email, password)
       .then((res) => {
-        console.log(res.user);
-        navigate(location?.state ? location.state : "/");
+        console.log(res.user.email);
+        const user = {email: res.email}
+        axios.post( `${import.meta.env.VITE_API_URL}/jwt`, user, {withCredentials: true})
+        .then(res =>{
+          navigate(location?.state ? location.state : "/");
+          console.log(res.data);
+        })
       })
       .catch((error) => {
         console.log(error.message);

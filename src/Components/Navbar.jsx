@@ -4,6 +4,10 @@ import { AuthContext } from "../Provider/AuthProvider";
 
 const Navbar = () => {
   const { user, signOutUser } = useContext(AuthContext);
+
+
+
+  
   return (
     // <div>
     //   <div className="navbar bg-base-100">
@@ -82,32 +86,6 @@ const Navbar = () => {
             <li>
               <NavLink to="/all-post">All volunteer Need posts</NavLink>
             </li>
-            {user && (
-              <li className="dropdown dropdown-end z-50">
-                <Link>My Profile</Link>
-                <ul
-                  tabIndex={0}
-                  className="menu menu-sm dropdown-content gap-1 mt-3 z-[1] p-2 shadow bg-base-100 rounded-box w-52"
-                >
-                  <li>
-                    <Link to="/add-volunteer" className="justify-between">
-                      Add Volunteer need Post
-                    </Link>
-                  </li>
-                  <li>
-                    <Link to="/manage-profile">Manage My Posts </Link>
-                  </li>
-                  <li className="mt-2">
-                    <button
-                      onClick={signOutUser}
-                      className="bg-gray-200 block text-center"
-                    >
-                      Logout
-                    </button>
-                  </li>
-                </ul>
-              </li>
-            )}
             {/* //---------------- */}
             <label className="grid cursor-pointer place-items-center">
               <input
@@ -168,12 +146,30 @@ const Navbar = () => {
                   />
                 </div>
               </div>
-              {/* <ul
-                tabIndex={0}
-                className="menu menu-sm dropdown-content mt-3 z-[1] p-2 shadow bg-base-100 rounded-box w-52"
-              >
+            
+                
                
-              </ul> */}
+                <ul
+                  tabIndex={0}
+                  className="menu menu-sm dropdown-content gap-1 mt-3 z-[1] p-2 shadow bg-base-100 rounded-box w-52"
+                >
+                  <li>
+                    <Link to="/add-volunteer" className="justify-between">
+                      Add Volunteer need Post
+                    </Link>
+                  </li>
+                  <li>
+                    <Link to="/manage-profile">Manage My Posts </Link>
+                  </li>
+                  <li className="mt-2">
+                    <button
+                      onClick={signOutUser}
+                      className="bg-gray-200 block text-center"
+                    >
+                      Logout
+                    </button>
+                  </li>
+                </ul>
             </div>
           )}
         </div>

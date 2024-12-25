@@ -67,7 +67,7 @@ const handelUpdate = async(e) =>{
         //make a post request
         await axios.put(`${import.meta.env.VITE_API_URL}/update/${id}`, updateData)
        //  from.reset()
-        toast.success('Update Job Successfully Done')
+        toast.success('Update Post Successfully Done')
         navigate('/manage-profile')
       }
       catch(err){

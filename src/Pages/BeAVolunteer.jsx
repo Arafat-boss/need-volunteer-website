@@ -64,7 +64,7 @@ const BeAVolunteer = () => {
     //fetch server
     try {
       //make a post request
-      await axios.post(`${import.meta.env.VITE_API_URL}/request`, addVolunteer);
+      await axios.post(`${import.meta.env.VITE_API_URL}/request-data`, addVolunteer);
       // from.reset()
       toast.success("Request Post Successfully Done");
       navigate('/manage-profile')
