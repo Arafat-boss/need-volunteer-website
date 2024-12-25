@@ -1,6 +1,7 @@
 import React, { useContext } from "react";
 import { Link, NavLink } from "react-router-dom";
 import { AuthContext } from "../Provider/AuthProvider";
+import logo from '../assets/rb_2453.png'
 
 const Navbar = () => {
   const { user, signOutUser } = useContext(AuthContext);
@@ -75,7 +76,9 @@ const Navbar = () => {
         <div className="flex-1 ">
           <Link to="/" className="flex gap-2 items-center">
             <img className="w-auto h-7" src={""} alt="" />
-            <span className="font-bold">Brand Logo</span>
+            <span className="font-bold">
+              <img className="w-28 h-20" src={logo} alt="" />
+            </span>
           </Link>
         </div>
         <div className="flex-none">

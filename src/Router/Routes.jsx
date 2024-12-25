@@ -47,7 +47,7 @@ const router = createBrowserRouter([
         {
             path:"/all-post",
             element:<AllPostPage></AllPostPage>,
-            loader: ()=> fetch(`https://volunteer-management-servaer.vercel.app/all-posts`)
+            // loader: ()=> fetch(`https://volunteer-management-servaer.vercel.app/all-posts`)
         },
         {
             path:"/details/:id",
