@@ -22,34 +22,34 @@ const Footer = () => {
                 </svg>
               </div>
               <span className="self-center text-2xl font-semibold">
-                Brand name
+                Volunteer
               </span>
             </a>
           </div>
           <div className="grid grid-cols-2 text-sm gap-x-3 gap-y-8 lg:w-2/3 sm:grid-cols-4">
             <div className="space-y-3">
               <h3 className="tracking-wide uppercase dark:text-gray-900">
-                Product
+                Route
               </h3>
               <ul className="space-y-1">
                 <li>
                   <a rel="noopener noreferrer" href="#">
-                    Features
+                    Home
                   </a>
                 </li>
                 <li>
                   <a rel="noopener noreferrer" href="#">
-                    Integrations
+                    All Volunteer
                   </a>
                 </li>
                 <li>
                   <a rel="noopener noreferrer" href="#">
-                    Pricing
+                    Manege Profile
                   </a>
                 </li>
                 <li>
                   <a rel="noopener noreferrer" href="#">
-                    FAQ
+                    Search
                   </a>
                 </li>
               </ul>
@@ -76,7 +76,7 @@ const Footer = () => {
               <ul className="space-y-1">
                 <li>
                   <a rel="noopener noreferrer" href="#">
-                    Public API
+                    Express API
                   </a>
                 </li>
                 <li>

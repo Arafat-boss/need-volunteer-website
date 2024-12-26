@@ -6,7 +6,7 @@ const About = () => {
     <>
     <h2 className="text-center font-bold text-4xl mt-10 mb-5">Top Volunteer</h2>
    <div className=" grid lg:grid-cols-3 md:grid-cols-2  w-11/12 mx-auto mb-10">
-     <div className="pt-12 border-t dark:border-gray-300">
+     <div className="pt-12">
       <div className="flex flex-col space-y-4 md:space-y-0 md:space-x-6 md:flex-row">
         <img
           src={img}
@@ -156,7 +156,7 @@ const About = () => {
         </a>
       </div>
     </div>
-     <div className="pt-12 border-t dark:border-gray-300">
+     <div className="pt-12 ">
       <div className="flex flex-col space-y-4 md:space-y-0 md:space-x-6 md:flex-row">
         <img
          src={img}
