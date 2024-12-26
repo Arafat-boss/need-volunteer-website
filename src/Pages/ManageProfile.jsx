@@ -159,7 +159,7 @@ const ManageProfile = () => {
 
   const fetchPosts = async () => {
     const { data } = await axios.get(
-      `${import.meta.env.VITE_API_URL}/post/${user?.email}`
+      `${import.meta.env.VITE_API_URL}/post/${user?.email}`, {withCredentials: true}
     );
     setPosts(data);
   };
@@ -171,7 +171,7 @@ const ManageProfile = () => {
   }, []);
   const fetchRequest = async () => {
     const { data } = await axios.get(
-      `${import.meta.env.VITE_API_URL}/requests/${user?.email}`,
+      `${import.meta.env.VITE_API_URL}/requests/${user?.email}`, {withCredentials: true}
     );
     setRequest(data);
   };

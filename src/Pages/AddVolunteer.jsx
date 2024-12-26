@@ -50,8 +50,7 @@ const AddVolunteer = () => {
     try {
       //make a post request
       await axios.post(
-        `${import.meta.env.VITE_API_URL}/volunteer-post`,
-        addVolunteer
+        `${import.meta.env.VITE_API_URL}/volunteer-post`,addVolunteer, {withCredentials: true}
       );
       // from.reset()
       toast.success("Add Post Successfully Done");

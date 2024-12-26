@@ -15,7 +15,7 @@ const AllPostPage = () => {
       try {
         const { data } = await axios.get(
           `${import.meta.env.VITE_API_URL}/all-volunteer`,
-          { params: { search } } // Cleaner query parameter usage
+          { params: { search } }, // Cleaner query parameter usage
         );
         setPosts(data);
       } catch (error) {
