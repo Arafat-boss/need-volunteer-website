@@ -18,14 +18,14 @@ const HomeCards = () => {
 
 console.log(posts);
     return (
-        <div className="w-11/12 mx-auto">
-            <h2 className="text-center font-bold text-4xl mb-5">Our <span className='text-purple-500'>Volunteer</span></h2>
+        <div className="max-w-7xl mx-auto bg-yellow-50 lg:px-10 md:px-5 sm:px-2 mt-5 rounded-lg">
+            <h2 className="text-center font-bold text-4xl py-5">Our <span className='text-orange-400'>Volunteer</span></h2>
       <div className="grid lg:grid-cols-3 md:grid-cols-2 sm:grid-cols-1 gap-6">
         {posts.map((post) => <HCard post={post} key={post._id}></HCard>)}
       </div>
       <div className='text-center mt-10'>
       <Link to='/all-post'>
-      <button type="button" className="px-8 py-3 font-semibold border rounded border-black dark:border-gray-800  dark:text-gray-800">All Volunteer</button>
+      <button type="button" className="px-8 py-3 font-semibold rounded border-2 border-orange-400 hover:bg-[#f97316] hover:text-white mb-5">All Volunteer</button>
       </Link>
       </div>
     </div>

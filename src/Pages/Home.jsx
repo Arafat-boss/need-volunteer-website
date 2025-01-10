@@ -4,6 +4,7 @@ import HomeCards from '../Components/HomeCards';
 import About from '../Components/About';
 import { Helmet } from 'react-helmet';
 import ExtraSection from '../Components/ExtraSection';
+import NonprofitStats from '../Components/NonprofitStats';
 
 const Home = () => {
     return (
@@ -15,6 +16,9 @@ const Home = () => {
             <About></About>
             <div>
             <HomeCards></HomeCards>
+            </div>
+            <div>
+                <NonprofitStats></NonprofitStats>
             </div>
            <div>
              <ExtraSection></ExtraSection>

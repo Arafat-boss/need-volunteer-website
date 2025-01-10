@@ -1,10 +1,11 @@
 import React from "react";
-import bg from"../assets/bg.avif"
+// import bg from"../assets/bg.avif"
+import bg from"../assets/hand.jpg"
 
 const ExtraSection = () => {
   return (
     <div
-      className="w-full mt-5"
+      className="w-full mt-5 bg-cover max-w-7xl mx-auto"
     //   style={`background-image: url(${bg}); background-position: center center; background-blend-mode: multiply; background-size: cover`}
     style={{ backgroundImage:  `url(${bg})` }}
     >
@@ -23,7 +24,7 @@ const ExtraSection = () => {
           />
           <button
             type="button"
-            className="w-2/5 p-3 font-semibold rounded-r-lg sm:w-1/3 bg-cyan-400 dark:bg-cyan-600 text-gray-900 dark:text-gray-50"
+            className="w-2/5 p-3 font-semibold rounded-r-lg sm:w-1/3 bg-cyan-400 bg-orange-400 text-gray-900 dark:text-gray-50"
           >
             Subscribe
           </button>
