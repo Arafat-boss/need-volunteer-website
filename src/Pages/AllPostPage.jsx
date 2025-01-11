@@ -45,7 +45,7 @@ const AllPostPage = () => {
               aria-label="Enter Job Title"
             />
 
-            <button className="px-1 md:px-4 py-3 text-sm font-medium tracking-wider text-gray-100 uppercase transition-colors duration-300 transform bg-gray-700 rounded-md hover:bg-gray-600 focus:bg-gray-600 focus:outline-none">
+            <button className="px-1 md:px-4 py-3 text-sm font-medium tracking-wider text-gray-100 uppercase transition-colors duration-300 transform bg-orange-400 rounded-md hover:bg-gray-600 focus:bg-gray-600 focus:outline-none">
               Search
             </button>
           </div>

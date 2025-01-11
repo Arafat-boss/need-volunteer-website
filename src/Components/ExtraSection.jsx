@@ -24,7 +24,7 @@ const ExtraSection = () => {
           />
           <button
             type="button"
-            className="w-2/5 p-3 font-semibold rounded-r-lg sm:w-1/3 bg-cyan-400 bg-orange-400 text-gray-900 dark:text-gray-50"
+            className="w-2/5 p-3 font-semibold rounded-r-lg sm:w-1/3 bg-orange-400 text-gray-900 dark:text-gray-50"
           >
             Subscribe
           </button>

@@ -7,6 +7,9 @@ import axios from "axios";
 import toast from "react-hot-toast";
 import { useNavigate } from "react-router-dom";
 import { Helmet } from "react-helmet";
+import bgImg from"../assets/authentication.png"
+
+
 
 const AddVolunteer = () => {
   const { user } = useContext(AuthContext);
@@ -66,7 +69,9 @@ const AddVolunteer = () => {
     <Helmet>
         <title>Add volunteer</title>
       </Helmet>
-    <div className="max-w-4xl mx-auto p-6 bg-base-200 rounded-lg shadow-lg">
+    <div className="max-w-4xl mx-auto p-6 rounded-lg shadow-lg"style={{
+              backgroundImage: `url(${bgImg})`,
+            }}>
       <h1 className="text-3xl font-bold text-center mb-6">Add a New Post</h1>
       <form onSubmit={handelSubmit} className="space-y-4">
         {/* Photo URL */}
@@ -187,8 +192,8 @@ const AddVolunteer = () => {
         </div>
 
         {/* Submit Button */}
-        <div className="text-center ">
-          <button type="submit" className="btn btn-accent w-full md:w-auto">
+        <div className="text-center w-full">
+          <button type="submit" className="btn bg-orange-400 w-full md:w-auto">
             Add Post
           </button>
         </div>
